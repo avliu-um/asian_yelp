@@ -1,4 +1,4 @@
-# asian_yelp
+# Asian Yelp
 
 This is a project to lift minority voices in majority-white environments.
 
