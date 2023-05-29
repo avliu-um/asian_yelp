@@ -6,7 +6,7 @@ import datetime
 
 
 MAX_RESTAURANTS = 20
-MIN_ASIANS = 1
+MIN_ASIANS = 10
 
 
 zip_code = int(input("Enter desired zip code: "))
@@ -18,8 +18,6 @@ area_soup = get_soup(area_url)
 restaurant_ids = area_soup.select("a[href*='biz']")
 restaurant_ids = list(map(lambda x: x['href'], restaurant_ids))[:MAX_RESTAURANTS]
 
-count_asians = 0
-page_count = 0
 mydb = mysql.connector.connect(
   host="localhost",
   user="root",
@@ -39,6 +37,9 @@ mycursor.execute(
 )
 # For each restaurant, get reviews
 for restaurant_id in restaurant_ids:
+
+    count_asians = 0
+    page_count = 0
 
     while count_asians < MIN_ASIANS:
 
@@ -80,7 +81,8 @@ for restaurant_id in restaurant_ids:
                         count_asians += 1
                     print(f'user is predicted {guessed_race}')
                 except ValueError as e:
-                    print(traceback.format_exc())
+                    print(f'error!')
+                    #print(traceback.format_exc())
 
                 sql = f"INSERT INTO {table_name} VALUES (%s, %s, %s, %s, %s)"
                 val = (restaurant_id, user_id,  guessed_race, star_rating, comment)
