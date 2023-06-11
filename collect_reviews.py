@@ -1,7 +1,7 @@
 from deepface import DeepFace
-from util import get_soup, argmax
+from util import get_soup, argmax, append_to_json
 import traceback
-import mysql.connector
+#import mysql.connector
 import datetime
 
 
@@ -18,23 +18,26 @@ area_soup = get_soup(area_url)
 restaurant_ids = area_soup.select("a[href*='biz']")
 restaurant_ids = list(map(lambda x: x['href'], restaurant_ids))[:MAX_RESTAURANTS]
 
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  password="root",
-  database="asian_yelp"
-)
-mycursor = mydb.cursor()
-date = datetime.date.today()
-table_name = f'reviews_{zip_code}'
-mycursor.execute(
-    f"CREATE TABLE IF NOT EXISTS {table_name} "
-    f"(restaurant_id VARCHAR(255), "
-    f"user_id VARCHAR(255), "
-    f"guessed_race VARCHAR(255), "
-    f"star_rating INT, "
-    f"comment LONGTEXT)"
-)
+do_database = False
+if do_database:
+    mydb = mysql.connector.connect(
+      host="localhost",
+      user="root",
+      password="root",
+      database="asian_yelp"
+    )
+    mycursor = mydb.cursor()
+    date = datetime.date.today()
+    table_name = f'reviews_{zip_code}'
+    mycursor.execute(
+        f"CREATE TABLE IF NOT EXISTS {table_name} "
+        f"(restaurant_id VARCHAR(255), "
+        f"user_id VARCHAR(255), "
+        f"guessed_race VARCHAR(255), "
+        f"star_rating INT, "
+        f"comment LONGTEXT)"
+    )
+
 # For each restaurant, get reviews
 for restaurant_id in restaurant_ids:
 
@@ -84,16 +87,25 @@ for restaurant_id in restaurant_ids:
                     print(f'error!')
                     #print(traceback.format_exc())
 
-                sql = f"INSERT INTO {table_name} VALUES (%s, %s, %s, %s, %s)"
-                val = (restaurant_id, user_id,  guessed_race, star_rating, comment)
-                mycursor.execute(sql, val)
+                #sql = f"INSERT INTO {table_name} VALUES (%s, %s, %s, %s, %s)"
+                #val = (restaurant_id, user_id,  guessed_race, star_rating, comment)
+                #mycursor.execute(sql, val)
+
                 results_url = f'results_{zip}.json'
+                result = {
+                    'restaurant_id': restaurant_id,
+                    'user_id': user_id,
+                    'guessed_race': guessed_race,
+                    'star_rating': star_rating,
+                    'comment': comment
+                }
+                append_to_json(results_url, result)
 
             except Exception as e:
                 print(e)
                 print(traceback.format_exc())
                 pass
 
-        mydb.commit()
+        #mydb.commit()
         page_count += 1
 
