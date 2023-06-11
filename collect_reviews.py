@@ -91,7 +91,7 @@ for restaurant_id in restaurant_ids:
                 #val = (restaurant_id, user_id,  guessed_race, star_rating, comment)
                 #mycursor.execute(sql, val)
 
-                results_url = f'results_{zip}.json'
+                results_url = f'results_{zip_code}.json'
                 result = {
                     'restaurant_id': restaurant_id,
                     'user_id': user_id,
