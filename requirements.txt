@@ -1,3 +1,0 @@
-beautifulsoup4==4.12.2
-deepface==0.0.79
-mysql_connector_repackaged==0.3.1
