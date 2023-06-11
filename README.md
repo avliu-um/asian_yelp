@@ -13,4 +13,4 @@ The main goal of this project is this: For a given area, find "hidden gems" of r
 
 Included files:
 - collect_reviews.py - for a given zip code, collects 10 reviews each of 20 restaurants, filtered by Asians using the [DeepFace](https://github.com/serengil/deepface) package, and writes to a mysql server
-- environment.yml - conda environment
+- requirements.txt - required packages
