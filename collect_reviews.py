@@ -104,6 +104,6 @@ for restaurant_id in restaurant_ids:
                 print(traceback.format_exc())
                 pass
 
-        #mydb.commit()
+        mydb.commit()
         page_count += 1
 
