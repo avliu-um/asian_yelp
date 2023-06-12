@@ -9,8 +9,10 @@ A star rating of 4 in my area, for instance, generally means that whites on aver
 This project filters Yelp reviews to those from Asian reviewers in an effort to uplift their minority voice.
 It allows those with roots and connections to Asian cuisine, culture, experience, and knowledge, to speak at the forefront.
 
-The main goal of this project is this: For a given area, find "hidden gems" of restaurants, i.e. those whose star ratings dramatically increase as a result of filtering on Asian reviewers.
+The main goal of this project is this: For a given area, find "hidden gems" of restaurants, i.e. those whose star ratings dramatically increase as a result of filtering on Asian reviewers. Right now, it just runs through 20 Chinese restaurants in a given zip code, scrapes reviews until at least 10 Asians are encountered, and writes in two places: (1) a MySQL DB and (2) a json folder.
 
 Included files:
 - collect_reviews.py - for a given zip code, collects 10 reviews each of 20 restaurants, filtered by Asians using the [DeepFace](https://github.com/serengil/deepface) package, and writes to a mysql server
 - requirements.txt - required packages
+- Dockerfile - Docker build file for the scraper
+- docker-compose.yml - Docker compose file for the scraper and associated database
