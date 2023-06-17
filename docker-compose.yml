@@ -2,5 +2,5 @@ version: 2
 services:
   scraper:
     build: .
-  mysql:
+  db:
     image: "mysql"
