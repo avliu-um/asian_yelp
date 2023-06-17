@@ -3,16 +3,23 @@ from util import get_soup, argmax, append_to_json
 import traceback
 import mysql.connector
 import datetime
+import argparse
 
 
 MAX_RESTAURANTS = 20
 MIN_ASIANS = 10
 
+parser = argparse.ArgumentParser()
+parser.add_argument('--zip_code', type=int, required=True)
+args = parser.parse_args()
+attributes = vars(args)
+zip_code = attributes['zip_code']
+
 
 print("start!\n")
 
 #zip_code = int(input("Enter desired zip code: "))
-zip_code = 14618
+#zip_code = 14618
 
 # Get restaurants given area
 area_url = f'https://www.yelp.com/search?find_desc=Chinese+Food&find_loc={zip_code}'
