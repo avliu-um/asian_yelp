@@ -11,7 +11,8 @@ MIN_ASIANS = 10
 
 print("start!\n")
 
-zip_code = int(input("Enter desired zip code: "))
+#zip_code = int(input("Enter desired zip code: "))
+zip_code = 14618
 
 # Get restaurants given area
 area_url = f'https://www.yelp.com/search?find_desc=Chinese+Food&find_loc={zip_code}'

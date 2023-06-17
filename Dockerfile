@@ -1,7 +1,6 @@
 # syntax=docker/dockerfile:1
 FROM python
 WORKDIR code/ 
-COPY . . 
 RUN pip3 install --upgrade pip
 RUN git clone https://github.com/avliu-um/asian_yelp.git
 # https://superuser.com/questions/164553/automatically-answer-yes-when-using-apt-get-install
