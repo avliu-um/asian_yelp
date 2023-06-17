@@ -1,6 +1,11 @@
-version: 2
+version: "2"
 services:
-  scraper:
-    build: .
   db:
-    image: "mysql"
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root 
+      MYSQL_DATABASE: asian_yelp 
+  scraper:
+    image: asian_yelp 
+    depends_on:
+        - db
