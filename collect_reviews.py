@@ -9,6 +9,8 @@ MAX_RESTAURANTS = 20
 MIN_ASIANS = 10
 
 
+print("start!\n")
+
 zip_code = int(input("Enter desired zip code: "))
 
 # Get restaurants given area
@@ -107,3 +109,4 @@ for restaurant_id in restaurant_ids:
         mydb.commit()
         page_count += 1
 
+print("\ndone!")
