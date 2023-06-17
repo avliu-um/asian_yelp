@@ -6,6 +6,8 @@ services:
       MYSQL_ROOT_PASSWORD: root 
       MYSQL_DATABASE: asian_yelp 
   scraper:
-    image: asian_yelp 
+    build: . 
     depends_on:
         - db
+    stdin_open: true
+    tty: true
