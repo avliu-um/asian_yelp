@@ -9,5 +9,3 @@ services:
     build: . 
     depends_on:
         - db
-    stdin_open: true
-    tty: true
