@@ -1,7 +1,6 @@
+version: 2
 services:
   scraper:
     build: .
-    restart: unless-stopped
   mysql:
     image: "mysql"
-    restart: unless-stopped

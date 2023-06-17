@@ -19,7 +19,7 @@ restaurant_ids = area_soup.select("a[href*='biz']")
 restaurant_ids = list(map(lambda x: x['href'], restaurant_ids))[:MAX_RESTAURANTS]
 
 mydb = mysql.connector.connect(
-  host="localhost",
+  host="mysql",
   user="root",
   password="root",
   database="asian_yelp"
